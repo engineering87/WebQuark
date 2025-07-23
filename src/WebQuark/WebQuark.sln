@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.Core", "WebQuark.Core.csproj", "{A271C4A9-1E73-4DCF-9940-BB2952EFAB59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.QueryString", "..\WebQuark.QueryString\WebQuark.QueryString.csproj", "{41E24A1C-0837-4DBB-B860-76813B6303CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.Session", "..\WebQuark.Session\WebQuark.Session.csproj", "{7F84F1F6-7933-4DE8-91AC-930E33A659C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.HttpRequest", "..\WebQuark.Request\WebQuark.HttpRequest.csproj", "{BBC45FA3-66D8-4D0F-9181-3DA4546F6DB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.HttpResponse", "..\WebQuark.HttpResponse\WebQuark.HttpResponse.csproj", "{E9E60B32-1432-409D-8432-D77E376B8411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.RouteContext", "..\WebQuark.Route\WebQuark.RouteContext.csproj", "{89123685-A62D-479B-800B-55E4B1D61159}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A271C4A9-1E73-4DCF-9940-BB2952EFAB59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A271C4A9-1E73-4DCF-9940-BB2952EFAB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A271C4A9-1E73-4DCF-9940-BB2952EFAB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A271C4A9-1E73-4DCF-9940-BB2952EFAB59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41E24A1C-0837-4DBB-B860-76813B6303CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41E24A1C-0837-4DBB-B860-76813B6303CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41E24A1C-0837-4DBB-B860-76813B6303CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41E24A1C-0837-4DBB-B860-76813B6303CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F84F1F6-7933-4DE8-91AC-930E33A659C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F84F1F6-7933-4DE8-91AC-930E33A659C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F84F1F6-7933-4DE8-91AC-930E33A659C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F84F1F6-7933-4DE8-91AC-930E33A659C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC45FA3-66D8-4D0F-9181-3DA4546F6DB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC45FA3-66D8-4D0F-9181-3DA4546F6DB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC45FA3-66D8-4D0F-9181-3DA4546F6DB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC45FA3-66D8-4D0F-9181-3DA4546F6DB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9E60B32-1432-409D-8432-D77E376B8411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9E60B32-1432-409D-8432-D77E376B8411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9E60B32-1432-409D-8432-D77E376B8411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9E60B32-1432-409D-8432-D77E376B8411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89123685-A62D-479B-800B-55E4B1D61159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89123685-A62D-479B-800B-55E4B1D61159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89123685-A62D-479B-800B-55E4B1D61159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89123685-A62D-479B-800B-55E4B1D61159}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1680EDDA-03FB-4D0F-924B-0F439BBB7758}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,106 @@
+﻿// (c) 2025 Francesco Del Re <francesco.delre.87@gmail.com)
+// This code is licensed under MIT license (see LICENSE.txt for details)
+using System.Text.Json;
+using WebQuark.Core.Interfaces;
+
+#if NETFRAMEWORK
+using System.Web;
+using System.Web.SessionState;
+#elif NETCOREAPP
+using Microsoft.AspNetCore.Http;
+#endif
+
+namespace WebQuark.Session
+{
+    /// <summary>
+    /// Unified session handler compatible with both ASP.NET Core and ASP.NET Framework.
+    /// </summary>
+    public class SessionHandler : ISessionHandler
+    {
+#if NETCOREAPP
+        private readonly ISession _session;
+
+        public SessionHandler(IHttpContextAccessor contextAccessor)
+        {
+            _session = contextAccessor?.HttpContext?.Session ?? throw new ArgumentNullException(nameof(contextAccessor));
+        }
+#elif NETFRAMEWORK
+        private readonly HttpSessionState _session;
+
+        public SessionHandler()
+        {
+            _session = HttpContext.Current?.Session ?? throw new InvalidOperationException("Session is not available.");
+        }
+#endif
+
+        public void SetString(string key, string value)
+        {
+#if NETCOREAPP
+            _session.SetString(key, value);
+#elif NETFRAMEWORK
+            _session[key] = value;
+#endif
+        }
+
+        public string GetString(string key)
+        {
+#if NETCOREAPP
+            return _session.GetString(key);
+#elif NETFRAMEWORK
+            return _session[key]?.ToString();
+#else
+            return null;
+#endif
+        }
+
+        public void Set<T>(string key, T value)
+        {
+            var json = JsonSerializer.Serialize(value);
+            SetString(key, json);
+        }
+
+        public T Get<T>(string key, T defaultValue = default)
+        {
+            var json = GetString(key);
+            if (string.IsNullOrWhiteSpace(json)) return defaultValue;
+
+            try
+            {
+                return JsonSerializer.Deserialize<T>(json);
+            }
+            catch
+            {
+                return defaultValue;
+            }
+        }
+
+        public bool HasKey(string key)
+        {
+#if NETCOREAPP
+            return _session.GetString(key) != null;
+#elif NETFRAMEWORK
+            return _session[key] != null;
+#else
+            return false;
+#endif
+        }
+
+        public void Remove(string key)
+        {
+#if NETCOREAPP
+            _session.Remove(key);
+#elif NETFRAMEWORK
+            _session.Remove(key);
+#endif
+        }
+
+        public void Clear()
+        {
+#if NETCOREAPP
+            _session.Clear();
+#elif NETFRAMEWORK
+            _session.Clear();
+#endif
+        }
+    }
+}
