@@ -3,6 +3,7 @@
 using System;
 using System.Text.Json;
 using WebQuark.Core.Interfaces;
+using WebQuark.Session.Utilities;
 
 #if NETFRAMEWORK
 using System.Web;
@@ -106,6 +107,31 @@ namespace WebQuark.Session
 #elif NETFRAMEWORK
             _session.Clear();
 #endif
+        }
+
+        public void SetEncrypted<T>(string key, T value)
+        {
+            if (value == null) throw new ArgumentNullException(nameof(value));
+
+            var json = JsonSerializer.Serialize(value);
+            var encrypted = EncryptionUtils.Encrypt(key, json);
+            SetString(key, encrypted);
+        }
+
+        public T GetEncrypted<T>(string key, T defaultValue = default)
+        {
+            var encrypted = GetString(key);
+            if (string.IsNullOrEmpty(encrypted)) return defaultValue;
+
+            try
+            {
+                var json = EncryptionUtils.Decrypt(key, encrypted);
+                return JsonSerializer.Deserialize<T>(json);
+            }
+            catch
+            {
+                return defaultValue;
+            }
         }
     }
 }

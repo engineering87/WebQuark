@@ -1,13 +1,13 @@
 ﻿// (c) 2025 Francesco Del Re <francesco.delre.87@gmail.com>
 // This code is licensed under MIT license (see LICENSE.txt for details)
 using System;
+using System.Threading.Tasks;
 using WebQuark.Core.Interfaces;
 
 #if NETFRAMEWORK
 using System.Web;
 #elif NETCOREAPP
 using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
 #endif
 
 namespace WebQuark.HttpResponse
@@ -51,12 +51,11 @@ namespace WebQuark.HttpResponse
 #endif
         }
 
-        public void Write(string content, string contentType = "text/plain")
+        public async Task Write(string content, string contentType = "text/plain")
         {
 #if NETCOREAPP
             _context.Response.ContentType = contentType ?? "text/plain";
-            // ASP.NET Core: WriteAsync is async, but we block here for simplicity
-            _context.Response.WriteAsync(content).GetAwaiter().GetResult();
+            await _context.Response.WriteAsync(content);
 #elif NETFRAMEWORK
             _response.ContentType = contentType ?? "text/plain";
             _response.Write(content);

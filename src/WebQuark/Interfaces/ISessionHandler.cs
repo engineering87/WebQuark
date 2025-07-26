@@ -11,5 +11,7 @@ namespace WebQuark.Core.Interfaces
         bool HasKey(string key);
         void Remove(string key);
         void Clear();
+        void SetEncrypted<T>(string key, T value);
+        T GetEncrypted<T>(string key, T defaultValue = default);
     }
 }

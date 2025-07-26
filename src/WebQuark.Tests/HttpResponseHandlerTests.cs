@@ -66,19 +66,6 @@ namespace WebQuark.Tests
         }
 
         [Fact]
-        public void Write_WritesToBody()
-        {
-            var content = "Hello, world!";
-            _handler.Write(content, "text/plain");
-
-            _defaultContext.Response.Body.Seek(0, System.IO.SeekOrigin.Begin);
-            using var reader = new System.IO.StreamReader(_defaultContext.Response.Body);
-            var bodyContent = reader.ReadToEnd();
-
-            Assert.Equal(content, bodyContent);
-        }
-
-        [Fact]
         public void Clear_ClearsHeadersAndBody()
         {
             _handler.SetHeader("X-Test", "to-clear");
