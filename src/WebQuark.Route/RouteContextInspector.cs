@@ -1,55 +1,33 @@
-﻿// (c) 2025 Francesco Del Re <francesco.delre.87@gmail.com>
-// This code is licensed under MIT license (see LICENSE.txt for details)
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
+﻿#if NETCOREAPP
+using MyHttpContext = Microsoft.AspNetCore.Http.HttpContext;
+using MyRouteData = Microsoft.AspNetCore.Routing.RouteData;
+#elif NETFRAMEWORK
+using MyHttpContext = System.Web.HttpContext;
+using MyRouteData = System.Web.Routing.RouteData;
+#endif
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebQuark.Core.Interfaces;
-
-#if NETFRAMEWORK
-using System.Web;
-using System.Web.Routing;
-#elif NETCOREAPP
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-#endif
-
 namespace WebQuark.RouteContext
 {
-    /// <summary>
-    /// Implementation of IRouteContextInspector interface to retrieve routing and request context data.
-    /// Compatible with both .NET Framework (System.Web) and .NET Core/ASP.NET Core.
-    /// </summary>
     public class RouteContextInspector : IRouteContextInspector
     {
-#if NETCOREAPP
-        private readonly HttpContext _context;
-        private readonly RouteData _routeData;
-#elif NETFRAMEWORK
-        private readonly HttpContext _context;
-        private readonly RouteData _routeData;
-#else
-        private readonly HttpContext _context;
-        private readonly RouteData _routeData;
-#endif
+        private readonly MyHttpContext _context;
+        private readonly MyRouteData _routeData;
 
 #if NETCOREAPP
         public RouteContextInspector(IHttpContextAccessor httpContextAccessor)
         {
             _context = httpContextAccessor?.HttpContext ?? throw new ArgumentNullException(nameof(httpContextAccessor));
-            _routeData = _context.GetRouteData() ?? new RouteData();
+            _routeData = _context.GetRouteData() ?? new MyRouteData();
         }
 #elif NETFRAMEWORK
         public RouteContextInspector()
         {
             _context = HttpContext.Current ?? throw new InvalidOperationException("HttpContext.Current is null");
-            _routeData = RouteTable.Routes.GetRouteData(_context) ?? new RouteData();
-        }
-#else
-        public RouteContextInspector()
-        {
-            throw new NotSupportedException("Unsupported framework");
+            _routeData = RouteTable.Routes.GetRouteData(_context) ?? new MyRouteData();
         }
 #endif
 

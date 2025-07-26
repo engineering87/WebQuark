@@ -1,5 +1,6 @@
-﻿// (c) 2025 Francesco Del Re <francesco.delre.87@gmail.com)
+﻿// (c) 2025 Francesco Del Re <francesco.delre.87@gmail.com>
 // This code is licensed under MIT license (see LICENSE.txt for details)
+using System;
 using System.Text.Json;
 using WebQuark.Core.Interfaces;
 
@@ -8,6 +9,7 @@ using System.Web;
 using System.Web.SessionState;
 #elif NETCOREAPP
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Session;
 #endif
 
 namespace WebQuark.Session
@@ -22,7 +24,10 @@ namespace WebQuark.Session
 
         public SessionHandler(IHttpContextAccessor contextAccessor)
         {
-            _session = contextAccessor?.HttpContext?.Session ?? throw new ArgumentNullException(nameof(contextAccessor));
+            if (contextAccessor?.HttpContext?.Session == null)
+                throw new ArgumentNullException(nameof(contextAccessor), "HttpContext or Session is null");
+
+            _session = contextAccessor.HttpContext.Session;
         }
 #elif NETFRAMEWORK
         private readonly HttpSessionState _session;

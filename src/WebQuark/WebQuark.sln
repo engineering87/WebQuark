@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.HttpRequest", "..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.HttpResponse", "..\WebQuark.HttpResponse\WebQuark.HttpResponse.csproj", "{E9E60B32-1432-409D-8432-D77E376B8411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.RouteContext", "..\WebQuark.Route\WebQuark.RouteContext.csproj", "{89123685-A62D-479B-800B-55E4B1D61159}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.Tests", "..\WebQuark.Tests\WebQuark.Tests.csproj", "{CB594E7A-69B3-49EB-9E0C-6A701014A800}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{E9E60B32-1432-409D-8432-D77E376B8411}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9E60B32-1432-409D-8432-D77E376B8411}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9E60B32-1432-409D-8432-D77E376B8411}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89123685-A62D-479B-800B-55E4B1D61159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89123685-A62D-479B-800B-55E4B1D61159}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89123685-A62D-479B-800B-55E4B1D61159}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89123685-A62D-479B-800B-55E4B1D61159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB594E7A-69B3-49EB-9E0C-6A701014A800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB594E7A-69B3-49EB-9E0C-6A701014A800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB594E7A-69B3-49EB-9E0C-6A701014A800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB594E7A-69B3-49EB-9E0C-6A701014A800}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
