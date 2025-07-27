@@ -20,6 +20,10 @@ namespace WebQuark.HttpResponse
 #if NETCOREAPP
         private readonly HttpContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HttpResponseHandler"/> class using the provided HTTP context accessor.
+        /// </summary>
+        /// <param name="accessor">The HTTP context accessor.</param>
         public HttpResponseHandler(IHttpContextAccessor accessor)
         {
             _context = accessor?.HttpContext ?? throw new ArgumentNullException(nameof(accessor));
@@ -27,12 +31,19 @@ namespace WebQuark.HttpResponse
 #elif NETFRAMEWORK
         private readonly HttpResponse _response;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HttpResponseHandler"/> class using the current HTTP context.
+        /// </summary>
         public HttpResponseHandler()
         {
             _response = HttpContext.Current?.Response ?? throw new InvalidOperationException("HttpResponse not available");
         }
 #endif
 
+        /// <summary>
+        /// Sets the HTTP status code of the response.
+        /// </summary>
+        /// <param name="statusCode">The status code to set.</param>
         public void SetStatusCode(int statusCode)
         {
 #if NETCOREAPP
@@ -42,6 +53,11 @@ namespace WebQuark.HttpResponse
 #endif
         }
 
+        /// <summary>
+        /// Sets or overrides a response header.
+        /// </summary>
+        /// <param name="key">The header name.</param>
+        /// <param name="value">The header value.</param>
         public void SetHeader(string key, string value)
         {
 #if NETCOREAPP
@@ -51,6 +67,12 @@ namespace WebQuark.HttpResponse
 #endif
         }
 
+        /// <summary>
+        /// Writes content to the response body.
+        /// </summary>
+        /// <param name="content">The content to write.</param>
+        /// <param name="contentType">The MIME type of the content. Defaults to "text/plain".</param>
+        /// <returns>A task representing the asynchronous write operation.</returns>
         public async Task Write(string content, string contentType = "text/plain")
         {
 #if NETCOREAPP
@@ -62,6 +84,10 @@ namespace WebQuark.HttpResponse
 #endif
         }
 
+        /// <summary>
+        /// Issues a redirect response to the specified URL.
+        /// </summary>
+        /// <param name="url">The URL to redirect to.</param>
         public void Redirect(string url)
         {
 #if NETCOREAPP
@@ -71,6 +97,12 @@ namespace WebQuark.HttpResponse
 #endif
         }
 
+        /// <summary>
+        /// Sets a cookie with the specified key and value.
+        /// </summary>
+        /// <param name="key">The cookie name.</param>
+        /// <param name="value">The cookie value.</param>
+        /// <param name="expires">Optional expiration date.</param>
         public void SetCookie(string key, string value, DateTime? expires = null)
         {
 #if NETCOREAPP
@@ -88,6 +120,9 @@ namespace WebQuark.HttpResponse
 #endif
         }
 
+        /// <summary>
+        /// Clears the content of the current response.
+        /// </summary>
         public void Clear()
         {
 #if NETCOREAPP
@@ -97,16 +132,23 @@ namespace WebQuark.HttpResponse
 #endif
         }
 
+        /// <summary>
+        /// Terminates the response execution immediately. 
+        /// Not supported in ASP.NET Core.
+        /// </summary>
         public void End()
         {
 #if NETCOREAPP
-            // Not supported in ASP.NET Core. You can throw, log, or do nothing.
-            // throw new NotSupportedException("Response.End() is not supported in ASP.NET Core.");
+            // Not supported in ASP.NET Core. No-op or logging could be added here if needed.
 #elif NETFRAMEWORK
             _response.End();
 #endif
         }
 
+        /// <summary>
+        /// Sets the Content-Type of the response.
+        /// </summary>
+        /// <param name="contentType">The MIME type to set (e.g., "application/json").</param>
         public void SetContentType(string contentType)
         {
 #if NETCOREAPP

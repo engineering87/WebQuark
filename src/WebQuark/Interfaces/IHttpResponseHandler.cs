@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace WebQuark.Core.Interfaces
 {
+    /// <summary>
+    /// Defines a platform-agnostic interface for manipulating HTTP response data,
+    /// including status codes, headers, cookies, and redirections.
+    /// </summary>
     public interface IHttpResponseHandler
     {
         void SetStatusCode(int statusCode);

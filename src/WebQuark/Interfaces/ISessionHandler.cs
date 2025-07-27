@@ -2,6 +2,10 @@
 // This code is licensed under MIT license (see LICENSE.txt for details)
 namespace WebQuark.Core.Interfaces
 {
+    /// <summary>
+    /// Defines a cross-platform abstraction for working with HTTP session state, 
+    /// supporting both plain and encrypted data storage and retrieval.
+    /// </summary>
     public interface ISessionHandler
     {
         void SetString(string key, string value);

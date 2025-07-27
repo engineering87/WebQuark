@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace WebQuark.Core.Interfaces
 {
+    /// <summary>
+    /// Defines a unified interface for inspecting HTTP requests, providing
+    /// access to HTTP method, headers, query strings, cookies, body content,
+    /// and client-related metadata.
+    /// </summary>
     public interface IHttpRequestInspector
     {
         string GetHttpMethod();

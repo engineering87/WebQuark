@@ -158,5 +158,28 @@ namespace WebQuark.QueryString
             var raw = ToString();
             return HttpUtility.UrlEncode(raw);
         }
+
+        /// <summary>
+        /// Returns true if the query string contains no parameters.
+        /// </summary>
+        public bool IsEmpty()
+        {
+            return _queryCollection.Count == 0;
+        }
+
+        /// <summary>
+        /// Adds multiple key-value pairs to the query string.
+        /// Existing keys will be overwritten.
+        /// </summary>
+        /// <param name="items">Dictionary of keys and values to add.</param>
+        public void AddRange(Dictionary<string, string> items)
+        {
+            if (items == null) return;
+
+            foreach (var kvp in items)
+            {
+                Set(kvp.Key, kvp.Value);
+            }
+        }
     }
 }

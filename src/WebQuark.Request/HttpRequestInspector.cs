@@ -40,6 +40,9 @@ namespace WebQuark.HttpRequest
         public HttpRequestInspector() => throw new PlatformNotSupportedException("HttpRequestInspector is not supported on this platform.");
 #endif
 
+        /// <summary>
+        /// Returns the HTTP method of the current request (e.g., GET, POST).
+        /// </summary>
         public string GetHttpMethod()
         {
 #if NETCOREAPP
@@ -51,6 +54,11 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Retrieves the value of a specific HTTP header.
+        /// </summary>
+        /// <param name="key">The name of the header.</param>
+        /// <returns>The header value, or null if not present.</returns>
         public string GetHeader(string key)
         {
 #if NETCOREAPP
@@ -62,6 +70,11 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Determines whether a specific HTTP header is present.
+        /// </summary>
+        /// <param name="key">The name of the header.</param>
+        /// <returns>True if the header exists; otherwise, false.</returns>
         public bool HasHeader(string key)
         {
 #if NETCOREAPP
@@ -73,6 +86,10 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Returns all HTTP headers as a dictionary.
+        /// </summary>
+        /// <returns>A dictionary of header key-value pairs.</returns>
         public IDictionary<string, string> GetAllHeaders()
         {
 #if NETCOREAPP
@@ -84,6 +101,12 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Retrieves the value of a specific query string parameter.
+        /// </summary>
+        /// <param name="key">The query string key.</param>
+        /// <param name="defaultValue">The default value if the key is not present.</param>
+        /// <returns>The value of the query parameter, or the default value.</returns>
         public string GetQueryString(string key, string defaultValue = null)
         {
 #if NETCOREAPP
@@ -96,6 +119,10 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Returns all query string parameters as a dictionary.
+        /// </summary>
+        /// <returns>A dictionary of query string key-value pairs.</returns>
         public IDictionary<string, string> GetAllQueryStrings()
         {
 #if NETCOREAPP
@@ -107,6 +134,11 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Retrieves the value of a specific cookie.
+        /// </summary>
+        /// <param name="key">The name of the cookie.</param>
+        /// <returns>The cookie value, or null if not found.</returns>
         public string GetCookie(string key)
         {
 #if NETCOREAPP
@@ -118,6 +150,11 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Determines whether a specific cookie is present.
+        /// </summary>
+        /// <param name="key">The name of the cookie.</param>
+        /// <returns>True if the cookie exists; otherwise, false.</returns>
         public bool HasCookie(string key)
         {
 #if NETCOREAPP
@@ -129,6 +166,10 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Returns all cookies as a dictionary.
+        /// </summary>
+        /// <returns>A dictionary of cookie key-value pairs.</returns>
         public IDictionary<string, string> GetAllCookies()
         {
 #if NETCOREAPP
@@ -140,6 +181,10 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Reads the raw request body as a string.
+        /// </summary>
+        /// <returns>The body content as a string.</returns>
         public string GetBodyAsString()
         {
 #if NETCOREAPP
@@ -161,6 +206,11 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Deserializes the request body into a JSON object of type T.
+        /// </summary>
+        /// <typeparam name="T">The target type.</typeparam>
+        /// <returns>An object of type T, or default if deserialization fails.</returns>
         public T GetBodyAsJson<T>()
         {
             var body = GetBodyAsString();
@@ -177,6 +227,10 @@ namespace WebQuark.HttpRequest
             }
         }
 
+        /// <summary>
+        /// Retrieves the User-Agent string from the request headers.
+        /// </summary>
+        /// <returns>The User-Agent value.</returns>
         public string GetUserAgent()
         {
 #if NETCOREAPP
@@ -188,6 +242,10 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Attempts to determine the client IP address, checking headers and connection metadata.
+        /// </summary>
+        /// <returns>The client's IP address as a string.</returns>
         public string GetClientIpAddress()
         {
 #if NETCOREAPP
@@ -206,6 +264,10 @@ namespace WebQuark.HttpRequest
 #endif
         }
 
+        /// <summary>
+        /// Determines whether the request was made using AJAX.
+        /// </summary>
+        /// <returns>True if the request is an AJAX call; otherwise, false.</returns>
         public bool IsAjaxRequest()
         {
             var val = GetHeader("X-Requested-With");

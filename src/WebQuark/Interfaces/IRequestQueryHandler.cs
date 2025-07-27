@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace WebQuark.Core.Interfaces
 {
+    /// <summary>
+    /// Provides an abstraction for reading, modifying, and serializing query string parameters
+    /// from HTTP requests in a consistent and platform-agnostic way.
+    /// </summary>
     public interface IRequestQueryHandler
     {
         string Get(string key, string defaultValue = null);
@@ -16,5 +20,7 @@ namespace WebQuark.Core.Interfaces
         Dictionary<string, string> ToDictionary();
         string ToQueryString();
         string ToEncodedString();
+        bool IsEmpty();
+        void AddRange(Dictionary<string, string> items);
     }
 }
