@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebQuark.HttpResponse\WebQuark.HttpResponse.csproj" />
+    <ProjectReference Include="..\WebQuark.QueryString\WebQuark.QueryString.csproj" />
+    <ProjectReference Include="..\WebQuark.Request\WebQuark.HttpRequest.csproj" />
+    <ProjectReference Include="..\WebQuark.Session\WebQuark.Session.csproj" />
+    <ProjectReference Include="..\WebQuark\WebQuark.Core.csproj" />
+  </ItemGroup>
+
+</Project>

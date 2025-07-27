@@ -35,9 +35,6 @@ namespace WebQuark.HttpRequest
         {
             _request = HttpContextBase.Current?.Request ?? throw new InvalidOperationException("HttpRequest not available");
         }
-#else
-        // Stub for netstandard2.0 or unsupported environments
-        public HttpRequestInspector() => throw new PlatformNotSupportedException("HttpRequestInspector is not supported on this platform.");
 #endif
 
         /// <summary>
@@ -199,8 +196,10 @@ namespace WebQuark.HttpRequest
 #elif NETFRAMEWORK
             var input = _request.InputStream;
             input.Position = 0;
-            using var reader = new StreamReader(input);
-            return reader.ReadToEnd();
+            using (var reader = new StreamReader(input))
+            {
+                return reader.ReadToEnd();
+            }
 #else
             return null;
 #endif

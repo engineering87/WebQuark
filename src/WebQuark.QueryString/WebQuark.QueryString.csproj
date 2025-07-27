@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net472;net8.0;net9.0</TargetFrameworks>
     <Description>WebQuark is a lightweight, modular .NET library that streamlines web requests, session handling, and routing across both .NET Framework and .NET Core environments </Description>
     <PackageProjectUrl>https://github.com/engineering87/WebQuark</PackageProjectUrl>
     <RepositoryUrl>https://github.com/engineering87/WebQuark</RepositoryUrl>
@@ -24,12 +24,20 @@
     <ProjectReference Include="..\WebQuark\WebQuark.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>NETSTANDARD</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'net9.0'">
     <DefineConstants>NETCOREAPP</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net472'">
+    <DefineConstants>NETFRAMEWORK</DefineConstants>
   </PropertyGroup>
 
 </Project>
