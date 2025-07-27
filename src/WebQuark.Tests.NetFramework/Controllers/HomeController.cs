@@ -14,13 +14,11 @@ namespace WebQuark.Tests.NetFramework.Controllers
     {
         public ActionResult Index()
         {
-            // Crea le istanze dei gestori WebQuark (manuale, senza DI)
             var responseHandler = new HttpResponseHandler();
             var queryHandler = new QueryStringHandler(); // test ok on 4.7.2
-            var sessionHandler = new SessionHandler();
+            var sessionHandler = new SessionHandler(); // test ok on 4.7.2
             var requestInspector = new HttpRequestInspector(); // test ok on 4.7.2
 
-            // Esempi di uso
             string httpMethod = requestInspector.GetHttpMethod();
             string userAgent = requestInspector.GetUserAgent();
             string ip = requestInspector.GetClientIpAddress();
@@ -31,10 +29,8 @@ namespace WebQuark.Tests.NetFramework.Controllers
             sessionHandler.SetString("LastVisit", DateTime.Now.ToString());
             string lastVisit = sessionHandler.GetString("LastVisit");
 
-            // Puoi anche usare responseHandler, per esempio:
             responseHandler.SetHeader("X-Custom-Header", "MyValue");
 
-            // Passa dati alla view tramite ViewBag o ViewData
             ViewBag.HttpMethod = httpMethod;
             ViewBag.UserAgent = userAgent;
             ViewBag.ClientIP = ip;

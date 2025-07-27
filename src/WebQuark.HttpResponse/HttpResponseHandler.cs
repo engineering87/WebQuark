@@ -29,7 +29,7 @@ namespace WebQuark.HttpResponse
             _context = accessor?.HttpContext ?? throw new ArgumentNullException(nameof(accessor));
         }
 #elif NETFRAMEWORK
-        private readonly HttpResponse _response;
+        private readonly System.Web.HttpResponse _response;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpResponseHandler"/> class using the current HTTP context.

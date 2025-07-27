@@ -45,8 +45,6 @@ namespace WebQuark.QueryString
         rawQuery = HttpContext.Current?.Request?.Url?.Query ?? string.Empty;
 #elif NETCOREAPP
         rawQuery = _httpContextAccessor?.HttpContext?.Request?.QueryString.Value ?? string.Empty;
-#else
-    throw new PlatformNotSupportedException("Unsupported platform: neither NETFRAMEWORK nor NETCOREAPP is defined.");
 #endif
 
             _queryCollection = HttpUtility.ParseQueryString(rawQuery);
