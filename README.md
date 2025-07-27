@@ -19,7 +19,8 @@ WebQuark is split into small, focused projects:
 | `WebQuark.HttpRequest`     | Unified request handling and query utilities for Framework and Core         |
 | `WebQuark.HttpResponse`    | Response helpers: headers, status codes, content writing, and redirection   |
 | `WebQuark.Session`         | Cross-platform session manager with support for encrypted object storage    |
-| `WebQuark.QueryString`     | Strongly-typed query string parser and encoder utilities   
+| `WebQuark.QueryString`     | Strongly-typed query string parser and encoder utilities                    |
+| `WebQuark.Extensions`      | Extension methods to simplify integration and enhance core WebQuark modules |
 
 ## Contributing
 Thank you for considering to help out with the source code!
