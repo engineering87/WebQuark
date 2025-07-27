@@ -4,6 +4,9 @@
 [![issues - webquark](https://img.shields.io/github/issues/engineering87/WebQuark)](https://github.com/engineering87/WebQuark/issues)
 [![stars - webquark](https://img.shields.io/github/stars/engineering87/WebQuark?style=social)](https://github.com/engineering87/WebQuark)
 
+
+<img src="https://github.com/engineering87/WebQuark/blob/main/img/WebQuark_logo.jpg" width="300">
+
 **WebQuark** is a lightweight, modular .NET utility library that streamlines web request, session handling, and routing across both legacy **.NET Framework** and modern **.NET / ASP.NET Core** environments.
 
 ## 📦 Packages
