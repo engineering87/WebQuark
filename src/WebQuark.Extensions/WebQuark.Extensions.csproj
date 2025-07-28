@@ -11,6 +11,7 @@
     <PackageProjectUrl>https://github.com/engineering87/WebQuark</PackageProjectUrl>
     <Title>WebQuark.Extensions</Title>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
