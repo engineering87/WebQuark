@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using WebQuark.Core.Interfaces;
+using WebQuark.QueryString.Utilities;
 #if NETFRAMEWORK
 using System.Web;
 #elif NETCOREAPP
@@ -89,28 +90,7 @@ namespace WebQuark.QueryString
         public T Get<T>(string key, T defaultValue = default)
         {
             var strVal = Get(key);
-            if (string.IsNullOrWhiteSpace(strVal)) 
-                return defaultValue;
-
-            try
-            {
-                var targetType = typeof(T);
-
-                if (targetType.IsEnum)
-                    return (T)Enum.Parse(targetType, strVal, ignoreCase: true);
-
-                if (targetType == typeof(Guid))
-                    return (T)(object)Guid.Parse(strVal);
-
-                if (targetType == typeof(DateTime))
-                    return (T)(object)DateTime.Parse(strVal);
-
-                return (T)Convert.ChangeType(strVal, targetType);
-            }
-            catch
-            {
-                return defaultValue;
-            }
+            return Converter.ConvertTo(strVal, defaultValue);
         }
 
         /// <summary>
@@ -118,7 +98,7 @@ namespace WebQuark.QueryString
         /// </summary>
         public void Set<T>(string key, T value)
         {
-            string strVal = Convert.ToString(value);
+            string strVal = Converter.ConvertFrom(value);
             Set(key, strVal);
         }
 

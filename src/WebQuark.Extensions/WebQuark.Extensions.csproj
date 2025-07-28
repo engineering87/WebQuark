@@ -4,7 +4,24 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageIcon>WebQuark_logo.jpg</PackageIcon>
+    <Description>Convenient extension methods to streamline usage of WebQuark modules and integrate easily with existing .NET codebases</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/engineering87/WebQuark</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/engineering87/WebQuark</PackageProjectUrl>
+    <Title>WebQuark.Extensions</Title>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\img\WebQuark_logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />

@@ -2,14 +2,20 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net472;net8.0;net9.0</TargetFrameworks>
-    <Description>WebQuark is a lightweight, modular .NET library that streamlines web requests, session handling, and routing across both .NET Framework and .NET Core environments </Description>
+    <Description>Strongly-typed query string builder and parser. Encode, decode, and manipulate query parameters safely and fluently</Description>
     <PackageProjectUrl>https://github.com/engineering87/WebQuark</PackageProjectUrl>
     <RepositoryUrl>https://github.com/engineering87/WebQuark</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageIcon>WebQuark_logo.jpg</PackageIcon>
+    <Title>WebQuark.QueryString</Title>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\img\WebQuark_logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
