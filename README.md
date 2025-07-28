@@ -1,9 +1,10 @@
 # WebQuark
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Nuget](https://img.shields.io/nuget/v/WebQuark.Core?style=plastic)](https://www.nuget.org/packages/WebQuark.Core)
+![NuGet Downloads](https://img.shields.io/nuget/dt/WebQuark.Core)
 [![issues - webquark](https://img.shields.io/github/issues/engineering87/WebQuark)](https://github.com/engineering87/WebQuark/issues)
 [![stars - webquark](https://img.shields.io/github/stars/engineering87/WebQuark?style=social)](https://github.com/engineering87/WebQuark)
-
 
 <img src="https://github.com/engineering87/WebQuark/blob/main/img/WebQuark_logo.jpg" width="300">
 
@@ -13,14 +14,14 @@
 
 WebQuark is split into small, focused projects:
 
-| Project                    | Description                                                                 |
-|----------------------------|-----------------------------------------------------------------------------|
-| `WebQuark.Core`            | Core interfaces and shared abstractions used across other modules           |
-| `WebQuark.HttpRequest`     | Unified request handling and query utilities for Framework and Core         |
-| `WebQuark.HttpResponse`    | Response helpers: headers, status codes, content writing, and redirection   |
-| `WebQuark.Session`         | Cross-platform session manager with support for encrypted object storage    |
-| `WebQuark.QueryString`     | Strongly-typed query string parser and encoder utilities                    |
-| `WebQuark.Extensions`      | Extension methods to simplify integration and enhance core WebQuark modules |
+| Project                    | Description                                                                 | NuGet Stable |
+|----------------------------|-----------------------------------------------------------------------------|--------------|
+| `WebQuark.Core`            | Core interfaces and shared abstractions used across other modules           | [![WebQuark.Core](https://img.shields.io/nuget/v/WebQuark.Core?style=plastic)](https://www.nuget.org/packages/WebQuark.Core) |
+| `WebQuark.HttpRequest`     | Unified request handling and query utilities for Framework and Core         | [![WebQuark.HttpRequest](https://img.shields.io/nuget/v/WebQuark.HttpRequest?style=plastic)](https://www.nuget.org/packages/WebQuark.HttpRequest) |
+| `WebQuark.HttpResponse`    | Response helpers: headers, status codes, content writing, and redirection   | [![WebQuark.HttpResponse](https://img.shields.io/nuget/v/WebQuark.HttpResponse?style=plastic)](https://www.nuget.org/packages/WebQuark.HttpResponse) |
+| `WebQuark.Session`         | Cross-platform session manager with support for encrypted object storage    | [![WebQuark.Session](https://img.shields.io/nuget/v/WebQuark.Session?style=plastic)](https://www.nuget.org/packages/WebQuark.Session) |
+| `WebQuark.QueryString`     | Strongly-typed query string parser and encoder utilities                    | [![WebQuark.QueryString](https://img.shields.io/nuget/v/WebQuark.QueryString?style=plastic)](https://www.nuget.org/packages/WebQuark.QueryString) |
+| `WebQuark.Extensions`      | Extension methods to simplify integration and enhance core WebQuark modules | [![WebQuark.Extensions](https://img.shields.io/nuget/v/WebQuark.Extensions?style=plastic)](https://www.nuget.org/packages/WebQuark.Extensions) |
 
 ## Integrating WebQuark in Your Project
 This guide shows how to integrate the WebQuark library for unified abstraction across different .NET platforms, including .NET Core and legacy .NET Framework.
