@@ -9,10 +9,15 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>WebQuark_logo.jpg</PackageIcon>
     <Title>WebQuark.HttpResponse</Title>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\img\WebQuark_logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
