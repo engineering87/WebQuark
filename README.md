@@ -5,6 +5,7 @@
 ![NuGet Downloads](https://img.shields.io/nuget/dt/WebQuark.Core)
 [![issues - webquark](https://img.shields.io/github/issues/engineering87/WebQuark)](https://github.com/engineering87/WebQuark/issues)
 [![stars - webquark](https://img.shields.io/github/stars/engineering87/WebQuark?style=social)](https://github.com/engineering87/WebQuark)
+[![Sponsor me](https://img.shields.io/badge/Sponsor-❤-pink)](https://github.com/sponsors/engineering87)
 
 <img src="https://github.com/engineering87/WebQuark/blob/main/img/WebQuark_logo.jpg" width="300">
 
