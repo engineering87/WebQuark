@@ -92,5 +92,10 @@ namespace WebQuark.Core.Interfaces
         /// </summary>
         /// <param name="items">A dictionary of keys and values to add.</param>
         void AddRange(Dictionary<string, string> items);
+
+        /// <summary>
+        /// Removes all query string parameters.
+        /// </summary>
+        void Clear();
     }
 }

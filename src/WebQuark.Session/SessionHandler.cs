@@ -189,5 +189,32 @@ namespace WebQuark.Session
                 return defaultValue;
             }
         }
+
+        /// <summary>
+        /// Attempts to retrieve a typed value from the session. Returns true if successful.
+        /// </summary>
+        /// <typeparam name="T">The expected type of the value.</typeparam>
+        /// <param name="key">The session key.</param>
+        /// <param name="value">The output value if present and valid.</param>
+        /// <returns>True if the key exists and conversion succeeds; otherwise, false.</returns>
+        public bool TryGet<T>(string key, out T value)
+        {
+            value = default(T);
+
+            var json = GetString(key);
+            if (string.IsNullOrWhiteSpace(json))
+                return false;
+
+            try
+            {
+                value = JsonSerializer.Deserialize<T>(json);
+                return true;
+            }
+            catch
+            {
+                value = default(T);
+                return false;
+            }
+        }
     }
 }

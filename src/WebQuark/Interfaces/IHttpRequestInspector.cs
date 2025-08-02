@@ -101,5 +101,11 @@ namespace WebQuark.Core.Interfaces
         /// </summary>
         /// <returns>True if the request is an AJAX request; otherwise, false.</returns>
         bool IsAjaxRequest();
+
+        /// <summary>
+        /// Retrieves the Content-Type header of the HTTP request.
+        /// </summary>
+        /// <returns>The Content-Type string, or null if not present.</returns>
+        string GetContentType();
     }
 }

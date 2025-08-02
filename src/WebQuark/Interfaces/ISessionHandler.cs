@@ -75,5 +75,14 @@ namespace WebQuark.Core.Interfaces
         /// <param name="defaultValue">The default value to return if not found or invalid.</param>
         /// <returns>The decrypted value associated with the key, or the default value.</returns>
         T GetEncrypted<T>(string key, T defaultValue = default);
+
+        /// <summary>
+        /// Attempts to retrieve a typed value from the session. Returns true if successful.
+        /// </summary>
+        /// <typeparam name="T">The expected type of the value.</typeparam>
+        /// <param name="key">The session key.</param>
+        /// <param name="value">The output value if present and valid.</param>
+        /// <returns>True if the key exists and conversion succeeds; otherwise, false.</returns>
+        bool TryGet<T>(string key, out T value);
     }
 }

@@ -272,5 +272,20 @@ namespace WebQuark.HttpRequest
             var val = GetHeader("X-Requested-With");
             return string.Equals(val, "XMLHttpRequest", StringComparison.OrdinalIgnoreCase);
         }
+
+        /// <summary>
+        /// Retrieves the Content-Type header of the HTTP request.
+        /// </summary>
+        /// <returns>The Content-Type string, or null if not present.</returns>
+        public string GetContentType()
+        {
+#if NETCOREAPP
+    return _context.Request.ContentType;
+#elif NETFRAMEWORK
+    return _request.ContentType;
+#else
+            return null;
+#endif
+        }
     }
 }

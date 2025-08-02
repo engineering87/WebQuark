@@ -161,5 +161,13 @@ namespace WebQuark.QueryString
                 Set(kvp.Key, kvp.Value);
             }
         }
+
+        /// <summary>
+        /// Removes all query string parameters from the current query string collection.
+        /// </summary>
+        public void Clear()
+        {
+            _queryCollection.Clear();
+        }
     }
 }
