@@ -10,6 +10,8 @@
 		<Title>WebQuark.Core</Title>
 		<PackageIcon>WebQuark_logo.jpg</PackageIcon>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<Version>1.0.1</Version>
+		<Authors>Francesco Del Re</Authors>
   </PropertyGroup>
 
   <ItemGroup>
