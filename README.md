@@ -11,6 +11,15 @@
 
 **WebQuark** is a lightweight, modular .NET utility library that streamlines web request, session handling, and routing across both legacy **.NET Framework** and modern **.NET / ASP.NET Core** environments.
 
+## 📑 Table of Contents
+- [Packages](#-packages)
+- [Integrating WebQuark in Your Project](#integrating-webquark-in-your-project)
+  - [.NET Core Integration](#net-core-integration)
+  - [Legacy .NET Framework Integration](#legacy-net-framework-integration)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
 ## 📦 Packages
 
 WebQuark is split into small, focused projects:
@@ -93,7 +102,7 @@ If you'd like to contribute, please fork, fix, commit and send a pull request fo
  * [Fork the repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
  * [Open an issue](https://github.com/engineering87/WebQuark/issues) if you encounter a bug or have a suggestion for improvements/features
 
-### Licensee
+### License
 WebQuark source code is available under MIT License, see license in the source.
 
 ### Contact
