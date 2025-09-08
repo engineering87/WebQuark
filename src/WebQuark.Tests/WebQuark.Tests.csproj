@@ -24,6 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebQuark.Cors\WebQuark.Cors.csproj" />
+    <ProjectReference Include="..\WebQuark.Extensions\WebQuark.Extensions.csproj" />
     <ProjectReference Include="..\WebQuark.HttpResponse\WebQuark.HttpResponse.csproj" />
     <ProjectReference Include="..\WebQuark.QueryString\WebQuark.QueryString.csproj" />
     <ProjectReference Include="..\WebQuark.Request\WebQuark.HttpRequest.csproj" />

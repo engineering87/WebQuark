@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.Tests.NetFramework
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.Extensions", "..\WebQuark.Extensions\WebQuark.Extensions.csproj", "{B91B5EB5-FBF8-46D2-A7FB-CE538000BB49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebQuark.Cors", "..\WebQuark.Cors\WebQuark.Cors.csproj", "{C1E2E3F1-3593-41C0-BC31-3F04A5D3126E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{B91B5EB5-FBF8-46D2-A7FB-CE538000BB49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B91B5EB5-FBF8-46D2-A7FB-CE538000BB49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B91B5EB5-FBF8-46D2-A7FB-CE538000BB49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1E2E3F1-3593-41C0-BC31-3F04A5D3126E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1E2E3F1-3593-41C0-BC31-3F04A5D3126E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1E2E3F1-3593-41C0-BC31-3F04A5D3126E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1E2E3F1-3593-41C0-BC31-3F04A5D3126E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
