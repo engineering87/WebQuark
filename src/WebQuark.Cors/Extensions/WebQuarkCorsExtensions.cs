@@ -18,6 +18,20 @@ namespace WebQuark.Cors.Extensions
         /// <summary>
         /// Registers WebQuark CORS with two named policies: a public read-only policy and a trusted allowlist policy.
         /// </summary>
+        /// <param name="services">The service collection.</param>
+        /// <param name="configure">Optional configuration callback for <see cref="WebQuarkCorsOptions"/>.</param>
+        /// <returns>The same <see cref="IServiceCollection"/> for chaining.</returns>
+        /// <example>
+        /// <code>
+        /// // Program.cs (ASP.NET Core)
+        /// builder.Services.AddWebQuarkCors(o =>
+        /// {
+        ///     o.AllowedOrigins   = new[] { "https://app.example.com", "https://localhost:5173" };
+        ///     o.AllowCredentials = true;   // disallowed with "*"
+        ///     o.PreflightMaxAge  = TimeSpan.FromHours(2);
+        /// });
+        /// </code>
+        /// </example>
         public static IServiceCollection AddWebQuarkCors(
             this IServiceCollection services,
             Action<WebQuarkCorsOptions> configure = null)
@@ -33,6 +47,24 @@ namespace WebQuark.Cors.Extensions
         /// <summary>
         /// Applies a default CORS policy to the pipeline. If you need per-endpoint control, omit this and use RequireCors.
         /// </summary>
+        /// <param name="app">The application builder.</param>
+        /// <param name="defaultPolicy">Optional policy name to apply (e.g., "cors-trusted" or "cors-public").</param>
+        /// <returns>The same <see cref="IApplicationBuilder"/> for chaining.</returns>
+        /// <example>
+        /// <code>
+        /// // Apply a default policy to the whole app:
+        /// app.UseWebQuarkCors("cors-trusted");
+        /// </code>
+        /// <code>
+        /// // Per-endpoint usage (Minimal APIs):
+        /// app.MapGet("/ping", () => "ok").RequireCors("cors-public");
+        /// </code>
+        /// <code>
+        /// // Per-controller usage (MVC):
+        /// // [EnableCors("cors-trusted")]
+        /// // public class MyController : ControllerBase { ... }
+        /// </code>
+        /// </example>
         public static IApplicationBuilder UseWebQuarkCors(
             this IApplicationBuilder app,
             string defaultPolicy = null)
@@ -105,6 +137,21 @@ namespace WebQuark.Cors.Extensions
         /// <summary>
         /// Applies the public (read-only, no credentials) policy across the OWIN pipeline.
         /// </summary>
+        /// <param name="app">The OWIN app builder.</param>
+        /// <param name="options">Optional CORS options; if null, defaults are used.</param>
+        /// <returns>The same <see cref="IAppBuilder"/> for chaining.</returns>
+        /// <example>
+        /// <code>
+        /// // Startup.cs (OWIN)
+        /// public void Configuration(IAppBuilder app)
+        /// {
+        ///     app.UseWebQuarkCorsPublic(new WebQuark.Cors.Options.WebQuarkCorsOptions
+        ///     {
+        ///         PreflightMaxAge = TimeSpan.FromMinutes(30)
+        ///     });
+        /// }
+        /// </code>
+        /// </example>
         public static IAppBuilder UseWebQuarkCorsPublic(this IAppBuilder app, WebQuarkCorsOptions options = null)
         {
             var o = options ?? new WebQuarkCorsOptions();
@@ -128,13 +175,19 @@ namespace WebQuark.Cors.Extensions
                 }
             };
 
-            // Access-Control-Max-Age (non disponibile nativamente: lo impostiamo noi per OPTIONS)
+            // Preflight detection + Vary
             app.Use(async (ctx, next) =>
             {
-                if (string.Equals(ctx.Request.Method, "OPTIONS", StringComparison.OrdinalIgnoreCase))
+                var isOptions = string.Equals(ctx.Request.Method, "OPTIONS", StringComparison.OrdinalIgnoreCase);
+                var origin    = ctx.Request.Headers.Get("Origin");
+                var acrm      = ctx.Request.Headers.Get("Access-Control-Request-Method");
+
+                if (isOptions && !string.IsNullOrEmpty(origin) && !string.IsNullOrEmpty(acrm))
                 {
                     ctx.Response.Headers.Set("Access-Control-Max-Age", ((int)o.PreflightMaxAge.TotalSeconds).ToString());
+                    ctx.Response.Headers.Set("Vary", "Origin, Access-Control-Request-Headers, Access-Control-Request-Method");
                 }
+
                 await next.Invoke();
             });
 
@@ -144,6 +197,25 @@ namespace WebQuark.Cors.Extensions
         /// <summary>
         /// Applies the trusted allowlist policy (supports wildcard subdomains and optional credentials).
         /// </summary>
+        /// <param name="app">The OWIN app builder.</param>
+        /// <param name="options">CORS options (must not be null for 'trusted').</param>
+        /// <returns>The same <see cref="IAppBuilder"/> for chaining.</returns>
+        /// <example>
+        /// <code>
+        /// // Startup.cs (OWIN)
+        /// public void Configuration(IAppBuilder app)
+        /// {
+        ///     var cors = new WebQuark.Cors.Options.WebQuarkCorsOptions
+        ///     {
+        ///         AllowedOrigins   = new[] { "https://portal.example.it", "http://localhost:3000" },
+        ///         AllowCredentials = true, // requires explicit allowlist (no "*")
+        ///         PreflightMaxAge  = TimeSpan.FromMinutes(30)
+        ///     };
+        ///
+        ///     app.UseWebQuarkCorsTrusted(cors);
+        /// }
+        /// </code>
+        /// </example>
         public static IAppBuilder UseWebQuarkCorsTrusted(this IAppBuilder app, WebQuarkCorsOptions options)
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
@@ -187,22 +259,50 @@ namespace WebQuark.Cors.Extensions
                 }
             };
 
-            // Access-Control-Max-Age per preflight
+            // Preflight detection + Vary
             app.Use(async (ctx, next) =>
             {
-                if (string.Equals(ctx.Request.Method, "OPTIONS", StringComparison.OrdinalIgnoreCase))
+                var isOptions = string.Equals(ctx.Request.Method, "OPTIONS", StringComparison.OrdinalIgnoreCase);
+                var origin    = ctx.Request.Headers.Get("Origin");
+                var acrm      = ctx.Request.Headers.Get("Access-Control-Request-Method");
+
+                if (isOptions && !string.IsNullOrEmpty(origin) && !string.IsNullOrEmpty(acrm))
                 {
                     ctx.Response.Headers.Set("Access-Control-Max-Age", ((int)options.PreflightMaxAge.TotalSeconds).ToString());
+                    ctx.Response.Headers.Set("Vary", "Origin, Access-Control-Request-Headers, Access-Control-Request-Method");
                 }
+
                 await next.Invoke();
             });
 
             return app.UseCors(new CorsOptions { PolicyProvider = provider });
         }
-
+    
         /// <summary>
         /// Compatibility helper: maps "cors-public" / "cors-trusted" to the corresponding OWIN setup.
         /// </summary>
+        /// <param name="app">The OWIN app builder.</param>
+        /// <param name="defaultPolicy">Policy name to apply ("cors-public" or "cors-trusted").</param>
+        /// <param name="options">Optional CORS options (required when using "cors-trusted").</param>
+        /// <returns>The same <see cref="IAppBuilder"/> for chaining.</returns>
+        /// <example>
+        /// <code>
+        /// // Startup.cs (OWIN)
+        /// public void Configuration(IAppBuilder app)
+        /// {
+        ///     var opts = new WebQuark.Cors.Options.WebQuarkCorsOptions
+        ///     {
+        ///         AllowedOrigins   = new[] { "https://portal.example.it" },
+        ///         AllowCredentials = true
+        ///     };
+        ///
+        ///     // Apply by name using the compatibility helper:
+        ///     app.UseWebQuarkCors("cors-trusted", opts);
+        ///     // or:
+        ///     // app.UseWebQuarkCors("cors-public");
+        /// }
+        /// </code>
+        /// </example>
         public static IAppBuilder UseWebQuarkCors(this IAppBuilder app, string defaultPolicy, WebQuarkCorsOptions options = null)
         {
             if (string.IsNullOrWhiteSpace(defaultPolicy)) return app;
