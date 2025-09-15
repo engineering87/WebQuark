@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 
 namespace WebQuark.Cors.Internal
 {
-
     /// <summary>
     /// Utilities to build host-matching predicates for CORS Origin validation.
     /// </summary>

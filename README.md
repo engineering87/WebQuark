@@ -32,6 +32,7 @@ WebQuark is split into small, focused projects:
 | `WebQuark.Session`         | Cross-platform session manager with support for encrypted object storage    | [![WebQuark.Session](https://img.shields.io/nuget/v/WebQuark.Session?style=plastic)](https://www.nuget.org/packages/WebQuark.Session) |
 | `WebQuark.QueryString`     | Strongly-typed query string parser and encoder utilities                    | [![WebQuark.QueryString](https://img.shields.io/nuget/v/WebQuark.QueryString?style=plastic)](https://www.nuget.org/packages/WebQuark.QueryString) |
 | `WebQuark.Extensions`      | Extension methods to simplify integration and enhance core WebQuark modules | [![WebQuark.Extensions](https://img.shields.io/nuget/v/WebQuark.Extensions?style=plastic)](https://www.nuget.org/packages/WebQuark.Extensions) |
+| `WebQuark.Cors`            | CORS helpers with secure defaults, prebuilt policies, ASP.NET Core & OWIN   | [![WebQuark.Cors](https://img.shields.io/nuget/v/WebQuark.Cors?style=plastic)](https://www.nuget.org/packages/WebQuark.Cors) |
 
 ## Integrating WebQuark in Your Project
 This guide shows how to integrate the WebQuark library for unified abstraction across different .NET platforms, including .NET Core and legacy .NET Framework.

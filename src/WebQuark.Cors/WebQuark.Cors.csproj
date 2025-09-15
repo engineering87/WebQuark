@@ -5,6 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/engineering87/WebQuark</PackageProjectUrl>
+    <PackageIcon>WebQuark_logo.jpg</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/engineering87/WebQuark</RepositoryUrl>
+    <Description>CORS helpers for .NET: ready policies, wildcard origins, proper preflight, secure defaults</Description>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net9.0' Or '$(TargetFramework)' == 'net8.0'">
@@ -15,6 +21,17 @@
     <PackageReference Include="Microsoft.Owin" Version="4.2.3" />
     <PackageReference Include="Microsoft.Owin.Cors" Version="4.2.3" />
     <PackageReference Include="Microsoft.AspNet.Cors" Version="5.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\img\WebQuark_logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net472'">
